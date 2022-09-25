@@ -3,6 +3,8 @@ import { AppBar, IconButton, Toolbar, Drawer, Button, Avatar, useMediaQuery } fr
 import { Menu, AccountCircle, Brightness4, Brightness7 } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
+
+import { Sidebar } from '..'
 import useStyles from './styles';
 
 // eslint-disable-next-line react/function-component-definition
@@ -23,7 +25,7 @@ const NavBar = () => {
             color="inherit"
             edge="start"
             style={{outline: 'none'}}
-            onClick={()=>{}}
+            onClick={() => setMobileOpen((previousMobileOpen) => !previousMobileOpen)}
             classes={classes.menuButton}
           >
             <Menu />
@@ -65,14 +67,16 @@ const NavBar = () => {
               variant="temporary"
               anchor="right"
               open={mobileOpen}
-              className={classes.drawerBackground}
+              onClose={() => setMobileOpen((previousMobileOpen) => !previousMobileOpen)}
               classes={{ paper: classes.drawerPaper}}
               ModalProps={{ keepMounted: true}}
             >
               <Sidebar setMobileOpen={setMobileOpen} />
             </Drawer>
           ) : (
-            <Drawer/>
+            <Drawer classes={{ paper: classes.drawerPaper}} variant="permanent" open>
+              <Sidebar setMobileOpen={setMobileOpen}/>
+            </Drawer>
           )}
         </nav>
       </div>
