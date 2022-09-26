@@ -3,7 +3,7 @@ import { Divider, List, ListItem, ListItemText, ListSubheader, ListItemIcon, Box
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/styles';
 import { useGetGenresQuery } from '../../services/TMDB';
-
+import genreIcons from '../../assets/genres';
 import useStyles from "./styles";
 
 const categories = [
@@ -11,12 +11,7 @@ const categories = [
  { label: 'Top rated', value: 'top_rated'},
  { label: 'Upcoming', value: 'upcoming'},
 ];
-// const demoCategories = [
-//  { label: 'Comedy', value: 'comedy'},
-//  { label: 'Horror', value: 'horror'},
-//  { label: 'Action', value: 'action'},
-//  { label: 'Animation', value: 'animation'},
-// ];
+
 
 const redLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';
 const blueLogo = 'https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png';
@@ -44,9 +39,9 @@ const Sidebar = ({ setMobileOpen }) => {
       {categories.map(({label, value}) => (
        <Link key={value} className={classes.links} to="/">
         <ListItem onClick={() => {}} button>
-         {/* <ListItemIcon>
-          <img src={redLogo} className={classes.genreItems} height={30} />
-         </ListItemIcon>           */}
+         <ListItemIcon>
+          <img src={genreIcons[label.toLowerCase()]} className={classes.genreItems} height={30} />
+         </ListItemIcon>          
          <ListItemText primary={label} />
         </ListItem>
        </Link>
@@ -62,9 +57,9 @@ const Sidebar = ({ setMobileOpen }) => {
       ) : data.genres.map(({name, id}) => (
         <Link key={name} className={classes.links} to="/">
           <ListItem onClick={() => {}} button>
-        {/* <ListItemIcon>
-              <img src={redLogo} className={classes.g enreItems} height={30} />
-            </ListItemIcon>           */}
+            <ListItemIcon>
+              <img src={genreIcons[name.toLowerCase()]} className={classes.genreItems} height={30} />
+            </ListItemIcon>          
             <ListItemText primary={name} />
           </ListItem>
         </Link>
