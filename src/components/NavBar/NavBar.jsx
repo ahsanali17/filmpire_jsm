@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   AppBar,
   IconButton,
@@ -16,17 +16,53 @@ import {
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
-
+import { useDispatch, useSelector } from "react-redux";
 import { Sidebar, Search } from "..";
+import { moviesApi, fetchToken, createSessionId } from "../utils";
+import { setUser, userSelector } from "../../features/auth";
 import useStyles from "./styles";
 
 // eslint-disable-next-line react/function-component-definition
 const NavBar = () => {
+  const { isAuthenticated, user } = useSelector(userSelector);
   const [mobileOpen, setMobileOpen] = useState(false);
   const classes = useStyles();
   const isMobile = useMediaQuery("(max-width:600px)");
   const theme = useTheme();
-  const isAuthenticated = true;
+  const dispatch = useDispatch();
+
+  console.log("consoling the user:", user);
+
+  const token = localStorage.getItem("request_token");
+  const sessionIdFromLocalStorage = localStorage.getItem("session_id");
+
+  // This useEffect is involved with our fetchToken & createSessionId functions in utils/index.js
+  useEffect(() => {
+    const logInUser = async () => {
+      // Get token
+      if (token) {
+        // Now check if we have a session id, if first time then move to else..
+        if (sessionIdFromLocalStorage) {
+          // Use generated session id to make a call to the users account
+          const { data: userData } = await moviesApi.get(
+            `/account?session_id=${sessionIdFromLocalStorage}`
+          );
+          // Then we will send that users account to our redux store
+          dispatch(setUser(userData));
+        } else {
+          // First time we won't have session id so it will generate one
+          const sessionId = await createSessionId();
+          // Use generated session id to make a call to the users account
+          const { data: userData } = await moviesApi.get(
+            `/account?session_id=${sessionId}`
+          );
+          // Then we will send that users account to our redux store
+          dispatch(setUser(userData));
+        }
+      }
+    };
+    logInUser();
+  }, [token]);
 
   return (
     <>
@@ -51,14 +87,15 @@ const NavBar = () => {
           {!isMobile && <Search />}
           <div>
             {!isAuthenticated ? (
-              <Button color="inherit" onClick={() => {}}>
+              // This is where we click the log in button
+              <Button color="inherit" onClick={fetchToken}>
                 Login &nbsp; <AccountCircle />
               </Button>
             ) : (
               <Button
                 color="inherit"
                 component={Link}
-                to="/profile/:id"
+                to={`/profile/${user.id}`}
                 className={classes.linkButton}
                 onClick={() => {}}
               >

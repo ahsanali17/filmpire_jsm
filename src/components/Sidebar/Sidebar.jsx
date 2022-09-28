@@ -37,7 +37,7 @@ const Sidebar = ({ setMobileOpen }) => {
   // );
   const dispatch = useDispatch();
 
-  console.log(data);
+  console.log("consoling the data from sidebar:", data);
   return (
     <>
       <Link to="/" className={classes.imageLink}>

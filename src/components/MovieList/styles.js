@@ -1,13 +1,14 @@
-import { makeStyles } from '@mui/styles';
+import { makeStyles } from "@mui/styles";
 
 export default makeStyles((theme) => ({
- moviesContainer: {
-  dispaly:'flex',
-  flexWrap: 'wrap',
-  justifyContent: 'space-between',
-  overflow: 'auto',
-  [theme.breakpoints.down('sm')]: {
-   justifyContent: 'center',
+  moviesContainer: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    overflow: "auto",
+    paddingTop: "70px",
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: "center",
+    },
   },
- },
 }));
