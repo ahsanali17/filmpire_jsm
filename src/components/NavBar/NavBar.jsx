@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   AppBar,
   IconButton,
@@ -7,34 +7,34 @@ import {
   Button,
   Avatar,
   useMediaQuery,
-} from "@mui/material";
+} from '@mui/material';
 import {
   Menu,
   AccountCircle,
   Brightness4,
   Brightness7,
-} from "@mui/icons-material";
-import { Link } from "react-router-dom";
-import { useTheme } from "@mui/material/styles";
-import { useDispatch, useSelector } from "react-redux";
-import { Sidebar, Search } from "..";
-import { moviesApi, fetchToken, createSessionId } from "../utils";
-import { setUser, userSelector } from "../../features/auth";
-import useStyles from "./styles";
+} from '@mui/icons-material';
+import { Link } from 'react-router-dom';
+import { useTheme } from '@mui/material/styles';
+import { useDispatch, useSelector } from 'react-redux';
+import { Sidebar, Search } from '..';
+import { moviesApi, fetchToken, createSessionId } from '../utils';
+import { setUser, userSelector } from '../../features/auth';
+import useStyles from './styles';
 
 // eslint-disable-next-line react/function-component-definition
 const NavBar = () => {
   const { isAuthenticated, user } = useSelector(userSelector);
   const [mobileOpen, setMobileOpen] = useState(false);
   const classes = useStyles();
-  const isMobile = useMediaQuery("(max-width:600px)");
+  const isMobile = useMediaQuery('(max-width:600px)');
   const theme = useTheme();
   const dispatch = useDispatch();
 
-  console.log("consoling the user:", user);
+  console.log('consoling the user:', user);
 
-  const token = localStorage.getItem("request_token");
-  const sessionIdFromLocalStorage = localStorage.getItem("session_id");
+  const token = localStorage.getItem('request_token');
+  const sessionIdFromLocalStorage = localStorage.getItem('session_id');
 
   // This useEffect is involved with our fetchToken & createSessionId functions in utils/index.js
   useEffect(() => {
@@ -45,7 +45,7 @@ const NavBar = () => {
         if (sessionIdFromLocalStorage) {
           // Use generated session id to make a call to the users account
           const { data: userData } = await moviesApi.get(
-            `/account?session_id=${sessionIdFromLocalStorage}`
+            `/account?session_id=${sessionIdFromLocalStorage}`,
           );
           // Then we will send that users account to our redux store
           dispatch(setUser(userData));
@@ -54,7 +54,7 @@ const NavBar = () => {
           const sessionId = await createSessionId();
           // Use generated session id to make a call to the users account
           const { data: userData } = await moviesApi.get(
-            `/account?session_id=${sessionId}`
+            `/account?session_id=${sessionId}`,
           );
           // Then we will send that users account to our redux store
           dispatch(setUser(userData));
@@ -72,17 +72,15 @@ const NavBar = () => {
             <IconButton
               color="inherit"
               edge="start"
-              style={{ outline: "none" }}
-              onClick={() =>
-                setMobileOpen((previousMobileOpen) => !previousMobileOpen)
-              }
+              style={{ outline: 'none' }}
+              onClick={() => setMobileOpen((previousMobileOpen) => !previousMobileOpen)}
               classes={classes.menuButton}
             >
               <Menu />
             </IconButton>
           )}
           <IconButton color="inherit" sx={{ ml: 1 }} onClick={() => {}}>
-            {theme.palette.mode === "dark" ? <Brightness7 /> : <Brightness4 />}
+            {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
           {!isMobile && <Search />}
           <div>
@@ -118,9 +116,7 @@ const NavBar = () => {
               variant="temporary"
               anchor="right"
               open={mobileOpen}
-              onClose={() =>
-                setMobileOpen((previousMobileOpen) => !previousMobileOpen)
-              }
+              onClose={() => setMobileOpen((previousMobileOpen) => !previousMobileOpen)}
               classes={{ paper: classes.drawerPaper }}
               ModalProps={{ keepMounted: true }}
             >

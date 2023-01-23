@@ -1,22 +1,22 @@
-import React, { useEffect } from "react";
-import { Box, Typography, Button, makeStyles } from "@mui/material";
-import { ExitToApp } from "@mui/icons-material";
+import React from 'react';
+import { Box, Typography, Button } from '@mui/material';
+import { ExitToApp } from '@mui/icons-material';
 
-import { useSelector } from "react-redux";
-import { userSelector } from "../../features/auth";
+// import { useSelector } from 'react-redux';
+// import { userSelector } from '../../features/auth';
 
-import useStyles from "./styles";
+import useStyles from './styles';
 
 // eslint-disable-next-line react/function-component-definition
 const Profile = () => {
   const classes = useStyles();
-  const { isAuthenticated, user } = useSelector(userSelector);
+  // const { isAuthenticated, user } = useSelector(userSelector);
   const favoriteMovies = [];
   const logout = () => {
     // Clears the local storage
     localStorage.clear();
     // Refreshes the page
-    window.location.href = "/";
+    window.location.href = '/';
   };
 
   return (

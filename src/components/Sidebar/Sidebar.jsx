@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from 'react';
 import {
   Divider,
   List,
@@ -8,27 +8,25 @@ import {
   ListItemIcon,
   Box,
   CircularProgress,
-} from "@mui/material";
-import { Link } from "react-router-dom";
-import { useTheme } from "@mui/styles";
-import { useDispatch, useSelector } from "react-redux";
+} from '@mui/material';
+import { Link } from 'react-router-dom';
+import { useTheme } from '@mui/styles';
+import { useDispatch } from 'react-redux';
 
-import { selectGenreOrCategory } from "../../features/currentGenreOrCategory";
-import { useGetGenresQuery } from "../../services/TMDB";
-import genreIcons from "../../assets/genres";
-import useStyles from "./styles";
+import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
+import { useGetGenresQuery } from '../../services/TMDB';
+import genreIcons from '../../assets/genres';
+import useStyles from './styles';
 
 const categories = [
-  { label: "Popular", value: "popular" },
-  { label: "Top rated", value: "top_rated" },
-  { label: "Upcoming", value: "upcoming" },
+  { label: 'Popular', value: 'popular' },
+  { label: 'Top rated', value: 'top_rated' },
+  { label: 'Upcoming', value: 'upcoming' },
 ];
-const redLogo =
-  "https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png";
-const blueLogo =
-  "https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png";
+const redLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';
+const blueLogo = 'https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png';
 // eslint-disable-next-line react/function-component-definition
-const Sidebar = ({ setMobileOpen }) => {
+const Sidebar = () => {
   const theme = useTheme();
   const classes = useStyles();
   const { data, isFetching } = useGetGenresQuery();
@@ -37,13 +35,13 @@ const Sidebar = ({ setMobileOpen }) => {
   // );
   const dispatch = useDispatch();
 
-  console.log("consoling the data from sidebar:", data);
+  // console.log('consoling the data from sidebar:', data);
   return (
     <>
       <Link to="/" className={classes.imageLink}>
         <img
           className={classes.image}
-          src={theme.palette.mode === "light" ? redLogo : blueLogo}
+          src={theme.palette.mode === 'light' ? redLogo : blueLogo}
           alt="Filmpire Logo"
         />
       </Link>

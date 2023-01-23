@@ -1,22 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from 'react';
 import {
   Box,
   CircularProgress,
-  useMediaQuery,
   Typography,
-} from "@mui/material";
-import { useSelector } from "react-redux";
+} from '@mui/material';
+import { useSelector } from 'react-redux';
 
-import { selectGenreOrCategory } from "../../features/currentGenreOrCategory";
+// import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
 
-import { useGetMoviesQuery } from "../../services/TMDB";
-import { MovieList } from "..";
+import { useGetMoviesQuery } from '../../services/TMDB';
+import { MovieList } from '..';
 
 // eslint-disable-next-line react/function-component-definition
 const Movies = () => {
-  const [page, setPage] = useState(1);
+  const [page] = useState(1);
   const { genreIdOrCategoryName, searchQuery } = useSelector(
-    (state) => state.currentGenreOrCategory
+    (state) => state.currentGenreOrCategory,
   );
   const { data, error, isFetching } = useGetMoviesQuery({
     genreIdOrCategoryName,
@@ -43,7 +42,7 @@ const Movies = () => {
     );
   }
 
-  if (error) return "An error has occurred.";
+  if (error) return 'An error has occurred.';
 
   return (
     <div>

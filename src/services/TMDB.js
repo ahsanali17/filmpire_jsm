@@ -1,12 +1,12 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const tmdbApiKey = process.env.REACT_APP_TMDB_KEY;
 // Here we export the tmdbApi and within it we have provided the reducersPath for our store the base url path and the endpoint(s) we are fetching.
 export const tmdbApi = createApi({
   // This is the name of the reducer we have to provide in our store.js
-  reducerPath: "tmdbApi",
+  reducerPath: 'tmdbApi',
   // This is our base path to let the api know where it needs to go
-  baseQuery: fetchBaseQuery({ baseUrl: "https://api.themoviedb.org/3" }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://api.themoviedb.org/3' }),
   // All of our endpoints will be added below
   endpoints: (builder) => ({
     //* Get Top Rated Movies
@@ -37,16 +37,16 @@ export const tmdbApi = createApi({
         }
         //* Get Movies by Category
         if (
-          genreIdOrCategoryName &&
-          typeof genreIdOrCategoryName === "string"
+          genreIdOrCategoryName
+          && typeof genreIdOrCategoryName === 'string'
         ) {
           return `movie/${genreIdOrCategoryName}?page=${page}&api_key=${tmdbApiKey}`;
         }
 
         //* Get Movies by Genre
         if (
-          genreIdOrCategoryName &&
-          typeof genreIdOrCategoryName === "number"
+          genreIdOrCategoryName
+          && typeof genreIdOrCategoryName === 'number'
         ) {
           return `discover/movie?with_genres=${genreIdOrCategoryName}&page=${page}&api_key=${tmdbApiKey}`;
         }

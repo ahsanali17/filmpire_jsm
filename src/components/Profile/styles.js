@@ -1,7 +1,7 @@
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from '@mui/styles';
 
 export default makeStyles(() => ({
   bigBox: {
-    paddingTop: "100px",
+    paddingTop: '100px',
   },
 }));

@@ -1,11 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+/* eslint-disable no-param-reassign */
+import { createSlice } from '@reduxjs/toolkit';
 
 export const genreOrCategory = createSlice({
-  name: "genreOrCategory",
+  name: 'genreOrCategory',
   initialState: {
-    genreIdOrCategoryName: "",
+    genreIdOrCategoryName: '',
     page: 1,
-    searchQuery: "",
+    searchQuery: '',
   },
   reducers: {
     selectGenreOrCategory: (state, action) => {

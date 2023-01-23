@@ -5,15 +5,15 @@ import { Route, Switch } from 'react-router-dom';
 import useStyles from './styles';
 import { Actors, MovieInformation, Movies, NavBar, Profile } from './index';
 
-const App = () => {
+function App() {
   const classes = useStyles();
-  
+
   return (
     <div className={classes.root}>
       <CssBaseline />
       <NavBar />
       <main className={classes.content}>
-        <div className={classes.toolbar}/>
+        <div className={classes.toolbar} />
         <Switch>
           <Route exact path="/movie/:id">
             <MovieInformation />
@@ -31,5 +31,5 @@ const App = () => {
       </main>
     </div>
   );
-};
+}
 export default App;
