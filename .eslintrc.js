@@ -11,7 +11,7 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    'eslint-disable import/no-cycle': true,
+    'eslint-disable import/no-cycle': 0,
     'arrow-body-style': 1,
     'react/react-in-jsx-scope': 0,
     'import/extensions': 0,
