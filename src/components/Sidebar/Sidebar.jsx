@@ -29,7 +29,7 @@ const blueLogo = 'https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48
 const Sidebar = () => {
   const theme = useTheme();
   const classes = useStyles();
-  const { data, isFetching } = useGetGenresQuery();
+  const { data, isFetching, error } = useGetGenresQuery();
   // const { genreIdOrCategoryName } = useSelector(
   //   (state) => state.currentGenreOrCategory
   // );
@@ -92,6 +92,9 @@ const Sidebar = () => {
             </Link>
           ))
         )}
+        if(!isFetching) {
+          console.log('the data could not fetch:', error)
+        }
       </List>
     </>
   );

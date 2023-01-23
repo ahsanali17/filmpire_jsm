@@ -1,5 +1,3 @@
-/* eslint-disable consistent-return */
-/* eslint-disable camelcase */
 import axios from 'axios';
 
 // Instead of using redux we're simply using axios to make a call to the movie database API

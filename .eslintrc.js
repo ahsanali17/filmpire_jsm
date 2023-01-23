@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb'],
+  extends: ['plugin:react/recommended'],
   overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
@@ -42,12 +42,12 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 0,
     'react/no-array-index-key': 0,
     'jsx-a11y/anchor-is-valid': [
-      'error',
+      "off",
       {
-        components: ['Link'],
-        specialLink: ['to', 'hrefLeft', 'hrefRight'],
-        aspects: ['noHref', 'invalidHref', 'preferButton'],
-      },
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["noHref", "invalidHref", "preferButton"]
+      }
     ],
   },
 };
