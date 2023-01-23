@@ -1,13 +1,12 @@
-/* eslint-disable react/function-component-definition */
 import React from 'react';
 import { Grid } from '@mui/material';
 
 import useStyles from './styles';
 import { Movie } from '..';
 
-const MovieList = ({ movies }) => {
+function MovieList({ movies }) {
   const classes = useStyles();
-  console.log('list of movies', movies);
+  // console.log('list of movies', movies);
   return (
     // A grid that will display all the movies fetched from data in movies.jsx
     // The mapping is data.results {list of all movies in here} then it will render the movie component and pass the data to its props
@@ -17,6 +16,6 @@ const MovieList = ({ movies }) => {
       ))}
     </Grid>
   );
-};
+}
 
 export default MovieList;

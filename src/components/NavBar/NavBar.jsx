@@ -17,13 +17,13 @@ import {
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { Sidebar, Search } from '..';
 import { moviesApi, fetchToken, createSessionId } from '../utils';
 import { setUser, userSelector } from '../../features/auth';
 import useStyles from './styles';
 
-// eslint-disable-next-line react/function-component-definition
-const NavBar = () => {
+function NavBar() {
   const { isAuthenticated, user } = useSelector(userSelector);
   const [mobileOpen, setMobileOpen] = useState(false);
   const classes = useStyles();
@@ -135,6 +135,6 @@ const NavBar = () => {
       </div>
     </>
   );
-};
+}
 
 export default NavBar;

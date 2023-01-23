@@ -11,8 +11,7 @@ import { useSelector } from 'react-redux';
 import { useGetMoviesQuery } from '../../services/TMDB';
 import { MovieList } from '..';
 
-// eslint-disable-next-line react/function-component-definition
-const Movies = () => {
+function Movies() {
   const [page] = useState(1);
   const { genreIdOrCategoryName, searchQuery } = useSelector(
     (state) => state.currentGenreOrCategory,
@@ -49,6 +48,6 @@ const Movies = () => {
       <MovieList movies={data} />
     </div>
   );
-};
+}
 
 export default Movies;
