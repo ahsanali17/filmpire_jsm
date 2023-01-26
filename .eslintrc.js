@@ -8,8 +8,13 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
+    ecmaFeatures: {
+      "jsx": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    }
   },
-  plugins: ['react'],
+  plugins: ['react', 'prettier/recommended'],
   rules: {
     'eslint-disable import/no-cycle': 0,
     'arrow-body-style': 1,
