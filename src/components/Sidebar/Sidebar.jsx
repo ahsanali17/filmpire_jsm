@@ -92,9 +92,6 @@ const Sidebar = () => {
             </Link>
           ))
         )}
-        if(!isFetching) {
-          console.log('the data could not fetch:', error)
-        }
       </List>
     </>
   );

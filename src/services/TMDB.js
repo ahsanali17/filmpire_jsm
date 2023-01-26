@@ -55,6 +55,25 @@ export const tmdbApi = createApi({
         return `movie/popular?page=${page}&api_key=${tmdbApiKey}`;
       },
     }),
+    //* Get Movie
+    // https://api.themoviedb.org/3/movie/157336?api_key={api_key}&append_to_response=videos
+    // https://api.themoviedb.org/3/movie/157336?api_key={api_key}&append_to_response=videos,images
+    getMovie: builder.query({
+      query: ({id}) => {
+        if(id) {
+          return `/movie/${id}?api_key=${tmdbApiKey}&append_to_response=videos,credits`
+        }
+      }
+    }),
+
+    //* GetUserList
+    getRecommendations: builder.query({
+      query: ({movie_id, list}) => {
+        if(movie_id, list) {
+          return `/movie/${movie_id}/${list}?api_key=${tmdbApiKey}`
+        }
+      }
+    })
   }),
 });
 
@@ -64,4 +83,6 @@ export const {
   useGetPopularMoviesQuery,
   useGetGenresQuery,
   useGetMoviesQuery,
+  useGetMovieQuery,
+  useGetRecommendationsQuery,
 } = tmdbApi;
