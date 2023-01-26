@@ -14,7 +14,7 @@ module.exports = {
       "experimentalObjectRestSpread": true
     }
   },
-  plugins: ['react'],
+  plugins: ['react', 'prettier/recommended'],
   rules: {
     'eslint-disable import/no-cycle': 0,
     'arrow-body-style': 1,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Modal,
   Typography,
@@ -35,6 +35,7 @@ const MovieInformation = () => {
   const { data, isFetching, error } = useGetMovieQuery({id});
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [open, setOpen] = useState(false)
 
   const { data: recommendations, isFetching: isRecommendationsFetching } = useGetRecommendationsQuery({ list: '/recommendations', movie_id: id})
 
@@ -64,8 +65,6 @@ const MovieInformation = () => {
       </Box>
     )
   }
-  console.log("movieID", id);
-  console.log("data", data);
 
   return (
     <Grid container className={classes.containerSpaceAround}>
@@ -134,7 +133,7 @@ const MovieInformation = () => {
               <ButtonGroup size="small" variant="outlined">
                 <Button target="_blank" rel="noopener noreferrer" href={data.homepage} endIcon={<Language />}>Website</Button>
                 <Button target="_blank" rel="noopener noreferrer" href={`https://www.imdb.com/title/${data.imdb_id}`} endIcon={<MovieIcon/>}>IMDB</Button>
-                <Button onClick={()=> {}} href="#" endIcon={<Theaters/>}>Trailer</Button>
+                <Button onClick={()=> setOpen(true)} href="#" endIcon={<Theaters/>}>Trailer</Button>
               </ButtonGroup>
             </Grid>
             <Grid item xs={12} sm={6} className={classes.buttonsContainer}>
@@ -160,6 +159,17 @@ const MovieInformation = () => {
         <Typography variant="h3" gutterBottom align="center">You Might Also Like:</Typography>
         {recommendations ? <MovieList movies={recommendations} numberOfMovies={12} /> : <Box>Sorry nothing was found..</Box>}
       </Box>
+      <Modal closeAfterTransition className={classes.modal} open={open} onClose={() => setOpen(false)}>
+        {data.videos.results.length > 0 && (
+          <iframe
+            autoPlay
+            className={classes.video}
+            title="Trailer"
+            src={`https://www.youtube.com/embed/${data.videos.results[0].key}`}
+            allow="autoplay"
+          />
+        )}
+      </Modal>
     </Grid>
 
   )
