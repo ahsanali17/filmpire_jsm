@@ -69,7 +69,7 @@ export const tmdbApi = createApi({
     //* GetUserList
     getRecommendations: builder.query({
       query: ({movie_id, list}) => {
-        if(movie_id, list) {
+        if(movie_id && list) {
           return `/movie/${movie_id}/${list}?api_key=${tmdbApiKey}`
         }
       }

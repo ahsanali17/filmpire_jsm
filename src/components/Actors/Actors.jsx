@@ -8,7 +8,7 @@ import {
   Button
 } from '@mui/material';
 import { ArrowBack } from '@mui/icons-material';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 import MovieList from '../MovieList/MovieList';
 import { useGetActorsDetailsQuery, useGetMoviesByActorIdQuery } from '../../services/TMDB';
