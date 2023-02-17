@@ -6,8 +6,6 @@ import {
 } from '@mui/material';
 import { useSelector } from 'react-redux';
 
-import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
-
 import { useGetMoviesQuery } from '../../services/TMDB';
 import { MovieList } from '..';
 
@@ -21,6 +19,7 @@ function Movies() {
     page,
     searchQuery,
   });
+
   if (isFetching) {
     return (
       <Box display="flex" justifyContent="center">

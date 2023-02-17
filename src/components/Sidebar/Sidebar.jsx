@@ -8,6 +8,7 @@ import {
   ListItemIcon,
   Box,
   CircularProgress,
+  Typography,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/styles';
@@ -25,17 +26,20 @@ const categories = [
 ];
 const redLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';
 const blueLogo = 'https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png';
-// eslint-disable-next-line react/function-component-definition
+
 const Sidebar = () => {
   const theme = useTheme();
   const classes = useStyles();
   const { data, isFetching, error } = useGetGenresQuery();
-  // const { genreIdOrCategoryName } = useSelector(
-  //   (state) => state.currentGenreOrCategory
-  // );
   const dispatch = useDispatch();
 
-  // console.log('consoling the data from sidebar:', data);
+  if(error) {
+    return (
+      <Box display="flex" justifyContent="center">
+        <Typography variant="h2" >Could not load sidebar error: {error}</Typography>
+      </Box>
+  )}
+
   return (
     <>
       <Link to="/" className={classes.imageLink}>
@@ -59,6 +63,7 @@ const Sidebar = () => {
                   src={genreIcons[label.toLowerCase()]}
                   className={classes.genreItems}
                   height={30}
+                  alt="categories"
                 />
               </ListItemIcon>
               <ListItemText primary={label} />
@@ -85,6 +90,7 @@ const Sidebar = () => {
                     src={genreIcons[name.toLowerCase()]}
                     className={classes.genreItems}
                     height={30}
+                    alt="genres"
                   />
                 </ListItemIcon>
                 <ListItemText primary={name} />
