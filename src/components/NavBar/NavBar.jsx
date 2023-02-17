@@ -31,8 +31,6 @@ function NavBar() {
   const theme = useTheme();
   const dispatch = useDispatch();
 
-  console.log('consoling the user:', user);
-
   const token = localStorage.getItem('request_token');
   const sessionIdFromLocalStorage = localStorage.getItem('session_id');
 
@@ -80,7 +78,7 @@ function NavBar() {
             </IconButton>
           )}
           <IconButton color="inherit" sx={{ ml: 1 }} onClick={() => {}}>
-            {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
+            {/* {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />} */}
           </IconButton>
           {!isMobile && <Search />}
           <div>

@@ -8,7 +8,6 @@ import { Movie } from '..';
 const RatedCards = ({ title, data }) => {
  const classes = useStyles();
 
-
  return (
   <Box>
    <Typography variant="h5" gutterBottom>

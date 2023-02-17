@@ -9,7 +9,6 @@ import useStyles from './styles';
 import { useGetListQuery } from '../../services/TMDB';
 import { RatedCards } from '..';
 
-// eslint-disable-next-line react/function-component-definition
 const Profile = () => {
   const classes = useStyles();
   const { user } = useSelector(userSelector);
@@ -22,7 +21,6 @@ const Profile = () => {
   };
 
   const sessionIdFromLocalStorage = localStorage.getItem('session_id');
-
 
   const { data: favoriteMovies, refetch: refetchMovies } = useGetListQuery({
     listName: 'favorite/movies',

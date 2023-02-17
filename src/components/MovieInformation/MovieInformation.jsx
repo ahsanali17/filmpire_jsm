@@ -54,8 +54,6 @@ const MovieInformation = () => {
     page: 1
   });
 
-  console.log("FM: ", favoriteMovies,"WM: ", watchlistMovies)
-
   const { data: recommendations } = useGetRecommendationsQuery({ list: '/recommendations', movie_id: id})
 
   const [isMovieFavorited, setIsMovieFavorited] = useState(false)
