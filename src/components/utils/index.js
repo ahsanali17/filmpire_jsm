@@ -13,10 +13,8 @@ export const fetchToken = async () => {
   try {
     // Await a response from the movieApi get request to create a new token. Destructure the data from the response object
     const { data } = await moviesApi.get('/authentication/token/new');
-    console.log('consoling data from fetchToken:', data);
     // Store the token from the data object
     const token = data.request_token;
-    console.log('consoling the token from fetchToken:', token);
     // If the data.success is true then
     if (data.success) {
       // In localStorage I will set the request token to be the token I saved from data.request_token
@@ -25,7 +23,7 @@ export const fetchToken = async () => {
       window.location.href = `https://www.themoviedb.org/authenticate/${token}?redirect_to=${window.location.origin}/approved`;
     }
   } catch (error) {
-    console.log(error, 'sorry, your token could not be created');
+    console.error(error, 'sorry, your token could not be created');
   }
 };
 
@@ -48,8 +46,7 @@ export const createSessionId = async () => {
       // Return that session_id
       return session_id;
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(
+      console.error(
         error,
         'your session is was not created or an unknown error has occurred',
       );

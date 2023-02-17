@@ -16,7 +16,6 @@ const Search = () => {
 
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
-      // console.log('Here', query);
       dispatch(searchMovie(query));
     }
   };

@@ -23,10 +23,6 @@ const Actors = () => {
   const { data, isFetching, error } = useGetActorsDetailsQuery(id);
   const { data: movies } = useGetMoviesByActorIdQuery({id, page});
 
-
-  console.log("actorID:", id);
-  console.log(movies);
-
   if (isFetching) {
     return (
       <Box display="flex" justifyContent="center">
@@ -56,16 +52,18 @@ const Actors = () => {
           )}
         </Grid>
         <Grid item lg={7} xl={8} style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
-          <Typography variant="h2" gutterBottom>
-            {data.name}
-          </Typography>
-          <Typography variant="h2" gutterBottom>
-            Born: {new Date(data.birthday).toDateString()}
-          </Typography>
-          <Typography variant="body1" align="justify" paragraph>
-            {data.biography || 'Sorry, no biography yet...'}
-          </Typography>
-          <Box marginTop="2rem" display="flex" justifyContent="space-around">
+          <Box paddingTop="5rem">
+            <Typography variant="h3" gutterBottom>
+              {data.name}
+            </Typography>
+            <Typography variant="h6" gutterBottom>
+              Born: {new Date(data.birthday).toDateString()}
+            </Typography>
+            <Typography variant="body1" align="justify" paragraph>
+              {data.biography || 'Sorry, no biography yet...'}
+            </Typography>
+          </Box>
+          <Box paddingTop="2rem" display="flex" justifyContent="space-around">
             <Button variant="contained" color="primary" target="_blank" href={`https://www.imdb.com/name/${data.imdb_id}`}>
               IMDB
             </Button>
